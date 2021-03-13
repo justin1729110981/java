@@ -1,0 +1,31 @@
+package a;
+
+import java.util.Scanner;
+
+public class biscuit {
+	public static void main(String args[]) {
+		int biscuitNumber,biscuitRemain;
+		int boxNumber,boxRemain;
+		int containerNumber,containerRemain;
+	
+		Scanner scan=new Scanner(System.in);
+		System.out.println("请输入饼干数量:");
+		biscuitNumber=scan.nextInt();
+		boxNumber=biscuitNumber/24;
+		biscuitRemain=biscuitNumber%24;
+		containerNumber=boxNumber/75;
+		containerRemain=boxNumber%75;
+		
+		System.out.println("剩余"+biscuitRemain+"饼干");
+		System.out.println("共有"+boxNumber+"盒");
+		System.out.println("有"+containerRemain+"盒未装容器");
+	}
+}
+/*A box of biscuits can hold 24 biscuits and a container can hold 75 boxes of
+biscuits. Write a program that prompts the user to enter the total number of
+biscuits. The program then outputs the number of boxes and the number of
+containers to ship the biscuits. Note that each box must contain the specified
+number of biscuits and each container must contain the specified number of
+boxes. If the last box of biscuits contains less than the number of specified
+biscuits, you can discard it, and output the number of leftover biscuits. Similarly, if the last container contains less than the number of specified
+boxes, you can discard it, and output the number of leftover boxes*/
