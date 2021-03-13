@@ -1,0 +1,52 @@
+package a;
+
+import java.util.Scanner;
+
+public class picture {
+    public static void main(String args[]) {
+        int crownNumber;
+        double length, width, totalPrice, square;
+        double regularPrice = 0.15, fancyPrice = 0.25, paperPrice = 0.02, glassPrice = 0.07, crownPrice = 0.35;
+        String  ch, s;
+        char type,whetherCrown;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("请输入相框的长");
+        length = scan.nextDouble();
+        System.out.println("请输入相框的宽");
+        width = scan.nextDouble();
+        square = length * width;
+        System.out.println("请选择相框的种类(r/f)");
+        Scanner scanner1 = new Scanner(System.in);
+        type = scanner1.next().charAt(0);
+        ch = scan.nextLine();
+        if (type=='r') {
+            System.out.println("是否给相框镶边(Y/N)");
+            Scanner scanner2 = new Scanner(System.in);
+            whetherCrown = scanner2.next().charAt(0);
+            if (whetherCrown == 'Y') {
+                System.out.println("请输入你想镶边的个数");
+                crownNumber = scan.nextInt();
+                totalPrice = 0.1 * 2 * (length + width) + regularPrice * 2 * (length + width) + paperPrice * square
+                        + glassPrice * square + crownNumber * crownPrice;
+                System.out.println("总价格为" + totalPrice);
+            } else
+                totalPrice = 0.1 * 2 * (length + width) + regularPrice * 2 * (length + width) + paperPrice * square
+                        + glassPrice * square;
+            System.out.println("总价格为" + totalPrice);
+        } else {
+            System.out.println("是否给相框镶边(Y/N)");
+            Scanner scanner2 = new Scanner(System.in);
+            whetherCrown = scanner2.next().charAt(0);
+            if (whetherCrown == 'Y') {
+                System.out.println("请输入你想镶边的个数");
+                crownNumber = scan.nextInt();
+                totalPrice = 0.1 * 2 * (length + width) + fancyPrice * 2 * (length + width) + paperPrice * square
+                        + glassPrice * square + crownNumber * crownPrice;
+                System.out.println("总价格为" + totalPrice);
+            } else
+                totalPrice = 0.1 * 2 * (length + width) + fancyPrice * 2 * (length + width) + paperPrice * square
+                        + glassPrice * square;
+            System.out.println("总价格为" + totalPrice);
+        }
+    }
+}
