@@ -1,0 +1,28 @@
+package a;
+
+import java.util.Scanner;
+
+public class  money{
+    public static void main(String args[]){
+        double fiftyCoin,twentyCoin,fiveCoin,money,remain,oneDollar;
+        double oneNumber,twoNumber;
+        Scanner scan=new Scanner(System.in);
+        System.out.println("请输入钱:");
+        money=scan.nextDouble();
+        if(money<10)
+            oneDollar=money%10;
+        else
+            oneDollar=money/10*10+money%10;
+        remain=money-(int)oneDollar;
+        fiftyCoin=remain/0.5;
+        twentyCoin=(remain-(int)fiftyCoin*0.5)/0.2;
+        fiveCoin=(remain-(int)fiftyCoin*0.5-(int)twentyCoin*0.2)/0.05;
+        twoNumber=oneDollar/2;
+        if(twoNumber/2==0)
+            oneNumber=0;
+        else 
+            oneNumber=1;
+            System.out.println("可分成"+(int)oneDollar+"个1美元的,"+(int)fiftyCoin+"个50美分的,"+(int)twentyCoin+"个20美分的和"+(int)(fiveCoin+1)+"个五美分的");
+            System.out.println("其中"+(int)oneDollar+"可以分成"+(int)twoNumber+"个2美元的和"+oneNumber+"个1美元的");
+    }
+}
