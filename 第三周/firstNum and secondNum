@@ -1,0 +1,103 @@
+package a;
+import java.util.Scanner;
+public class firstNum {
+	public static int firstNum,secondNum;
+	public static void main(String args[]) {
+		int choice=menu();
+		while(choice!=6)
+		{
+			switch(choice)
+			{
+			case 1:
+				enterNum();
+				break;
+			case 2:
+				oddNum();
+				break;
+			case 3:
+				System.out.println("偶数和为"+evennumSum());
+				break;
+			case 4:
+				numberandSquare();
+				break;
+			case 5:
+				System.out.println("奇数平方和为"+oddsquareSum());
+				break;
+			case 6:
+				System.out.println("退出");
+				break;
+			default:
+				System.out.println("输出无效,请重新输入");
+				break;
+			}
+			choice=menu();
+		}
+		System.out.println("程序退出");
+	}
+	public static int menu() {
+		int choice=0;
+		System.out.println("******************************************************");
+		System.out.println("*   1.input first and second number                  *");
+		System.out.println("*   2.output odd number                              *");//输出两个数之间的奇数
+		System.out.println("*   3.output the sum of even number                   *"); //输出两个数之间偶数之和
+		System.out.println("*   4.output number and square between 1 and 10      *");//输出所有的数和它们在一到十之间的平方
+		System.out.println("*   5.output the sum of square of odd number         *");//输出奇数平方之和
+		System.out.println("*   6.Exit                                           *");
+		System.out.println("******************************************************");
+		System.out.println("Please input your choice(1-6)");
+		Scanner scan=new Scanner(System.in);
+		choice=scan.nextInt();
+		return choice;
+	}
+	public static void enterNum() {
+		System.out.println("请输入firstNum secondNum");
+		Scanner scan=new Scanner(System.in);
+		firstNum=scan.nextInt();
+		secondNum=scan.nextInt();
+		if(firstNum>=secondNum)
+			System.out.println("输入错误,请重新输入");
+	}
+	public static void oddNum() {
+		int i;
+		for(i=firstNum;i<secondNum;i++)
+		{
+			if(i%2!=0)
+				System.out.println(i);
+		}
+	}
+	public static int evennumSum() {
+		int sum=0,i;
+		for(i=firstNum;i<secondNum;i++)
+		{
+			if(i%2==0)
+				sum+=i;
+		}
+		return sum;
+	}
+	public static void numberandSquare() {
+		int i;
+		System.out.print(firstNum+"到"+secondNum+"之间的数有: ");
+		for(i=firstNum;i<=secondNum;i++)
+			System.out.print(i+" ");
+		System.out.println();
+		System.out.print("平方和在1-10之间的有: ");
+		for(i=firstNum;i<=secondNum;i++)
+		{			
+			if(Math.pow(i,2)>1&&Math.pow(i,2)<10)
+			System.out.print((int)Math.pow(i,2)+" ");
+		}
+		System.out.println();
+	}
+	public static int oddsquareSum() {
+		int sum=0,i,n;
+		for(i=firstNum;i<=secondNum;i++)
+		{
+			if(i%2!=0)
+			{
+				n=(int)Math.pow(i,2);
+				sum+=n;
+			}
+		}
+		return sum;
+	}
+}
