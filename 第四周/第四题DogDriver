@@ -1,0 +1,8 @@
+package dog;
+
+public class DogDriver {
+	public static void main(String []args) {
+		Dog d1=new Dog("abc","blue",1);
+		d1.displayDog();
+	}
+}
