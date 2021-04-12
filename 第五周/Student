@@ -1,0 +1,70 @@
+package week5;
+
+class Student {
+	private String name;
+	private String stuno;
+	private float math;
+	private float english;
+	private float computer;
+	public Student(){
+		name="Unknown";
+		stuno="Unknown";
+		math=0;
+		english=0;
+		computer=0;
+
+	}
+	public Student(String stuno,String name,float math,float english,float computer){
+		this.computer=computer;
+		this.stuno=stuno;
+		this.name=name;
+		this.math=math;
+		this.english=english;
+	}
+	public void setName(String name){
+		this.name=name;
+	}
+	public String getName(){
+		return this.name;
+	}
+	public void setStuno(String stuno){
+		this.stuno=stuno;
+	}
+	public String getStuno(){
+		return this.stuno;
+	}
+	public void setMath(float math){
+		this.math=math;
+	}
+	public float getMath(){
+		return this.math;
+	}
+	public void setEnglish(float english){
+		this.english=english;
+	}
+	public float getEnglish(){
+		return this.english;
+	}
+	public void setComputer(float computer){
+		this.computer=computer;
+	}
+	public float getComputer(){
+		return this.computer;
+	}
+	public float min(){
+		float min = math;
+		
+		min = min < english ? min : english;
+		min = min < computer ? min : computer;
+		return min;
+	}
+	public float max(){
+		float max = math;
+		max = max > english ? max : english;
+		max =max > computer ? max : computer;
+		return max;
+	}
+	public void diaplayStuInfo(){
+		System.out.printf("%10s%10s%10.1f%10.1f%10.1f\n",stuno,name,math,english,computer);
+	}
+}
