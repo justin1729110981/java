@@ -1,0 +1,161 @@
+package studentSubject;
+
+import java.util.Scanner;
+
+class driver {
+	public static Subject enrolment;
+	public static Student stu;
+	public static Enrolment subject;
+	public static boolean create =false;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int choice=-1;
+		while(choice!=0){
+			choice=menu();
+			switch(choice){
+				case 0:
+					choice = 0;
+					System.out.println("谢谢使用");
+					break;
+				case 1:
+					if(CreateSubject())
+						System.out.println("创建成功!");
+					break;
+				case 2:
+					if(create)
+					{
+						if(removeSubject())
+							System.out.println("删除成功!");
+						else System.out.println("没有此课程");
+					}
+					else System.out.println("请先创建课程列表！");
+					break;
+					
+				case 3:
+					if(create)
+						if(Select())
+							System.out.println("选课成功!");
+					else System.out.println("请先创建课程列表！");
+					break;
+				case 4:
+					if(create)
+						if(remove())
+							System.out.println("退选成功!");
+					else System.out.println("请先创建课程列表！");
+					break;
+				case 5:
+					if(create) print();
+					else System.out.println("请先创建课程列表！");
+					break;
+				default:
+					System.out.println("输入错误，请重新输入");
+					break;
+			}
+			
+		}
+	}
+	
+	public static int menu(){
+		int choice=0;
+		System.out.println("1.创建课程     create subject");
+		System.out.println("2.删除课程     remove subject");
+		System.out.println("3.学生选课     select subject");
+		System.out.println("4.退选课程     remove subject");
+		System.out.println("5.打印课程名单 print");
+		System.out.println("0.退出系统     Exit");
+		Scanner scan=new Scanner(System.in);
+		choice=scan.nextInt();
+		return choice;
+	}
+	
+	public static boolean CreateSubject(){
+		 String subjectName;
+		 String subjectId;
+		 int max;
+		 Scanner scan=new Scanner(System.in);
+		 System.out.print("请输入课程名称:");
+		 subjectName=scan.next();
+		 System.out.println("请输入课程ID:");
+		 subjectId=scan.next();
+		 System.out.println("请输入该课程最大人数:");
+		 max=scan.nextInt();
+		 subject=new Enrolment(subjectName,subjectId,max);
+		 if(!create)
+			 enrolment=new Subject(max);
+		 if(enrolment.indexOf(subject)!=-1)
+		 {
+			 System.out.println("您已经创建过该课程!");
+			 return false;
+		 }
+		 else enrolment.add(subject);
+		 create=true;
+		 return true;
+	
+	}
+	
+	public static boolean removeSubject(){
+		String subjectId;
+		Scanner scan=new Scanner(System.in);
+		System.out.println("请输入要删除的课程ID:");
+		subjectId=scan.next();
+		subject=new Enrolment("l",subjectId,10);
+		if(enrolment.indexOf(subject)!=-1)
+			return enrolment.remove(subject);
+		return false;
+	}
+	
+	public static boolean remove(){
+		String name;
+		String id;
+		String subjectId;
+		Scanner scan=new Scanner(System.in);
+		System.out.print("请输入姓名:");
+		name=scan.next();
+		System.out.println("请输入学号:");
+		id=scan.next();
+		System.out.println("请输入课程ID:");
+		subjectId=scan.next();
+		stu=new Student(name,id);
+		subject=new Enrolment("0",subjectId,10);
+		if(enrolment.indexOf(subject)==-1)
+		{
+			System.out.println("课程列表中无此类课程");
+			return false;
+		}
+		else return enrolment.list[enrolment.indexOf(subject)].remove(stu);
+	}
+	
+	public static boolean Select(){
+		String name;
+		String id;
+		String subjectId;
+		Scanner scan=new Scanner(System.in);
+		System.out.print("请输入姓名:");
+		name=scan.next();
+		System.out.println("请输入学号:");
+		id=scan.next();
+		System.out.println("请输入课程ID:");
+		subjectId=scan.next();
+		stu=new Student(name,id);
+		subject=new Enrolment("0",subjectId,10);
+		if(enrolment.indexOf(subject)==-1)
+		{
+			System.out.println("课程列表中无此类课程");
+			return false;
+		}
+		else  return enrolment.list[enrolment.indexOf(subject)].add(stu);
+	}
+	
+	public static void print(){
+		String subjectId;
+		Scanner scan=new Scanner(System.in);
+		System.out.println("请输入要输出的课程ID:");
+		subjectId=scan.next();
+		subject=new Enrolment("0000",subjectId,10);
+		if(enrolment.indexOf(subject)!= -1)
+			System.out.println(enrolment.list[enrolment.indexOf(subject)].toString());
+		else
+			System.out.println("课程列表中无此类课程");
+	}
+
+}
