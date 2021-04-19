@@ -1,0 +1,55 @@
+package studentSubject;
+
+class Subject {
+	int count;               //目前存储了多少元素
+	Enrolment list[];
+	
+	public Subject(int max)
+	{
+		count=0;
+		list=new Enrolment[max];
+	}
+	
+	public boolean add(Enrolment enrolment){            //添加
+		if(enrolment==null)
+			return false;
+		if(list.length<=count)
+			return false;
+		list[count]=enrolment;
+		count++;
+		return true;
+	}
+	
+	public boolean remove(Enrolment enrolment){      //删除
+		if(count<=0||count>=list.length )
+			return false;
+		int index=this.indexOf(enrolment);
+		if(index==-1)
+			return false;
+		for(int i=index;i<count;i++)
+			list[i]=list[i+1];
+		count--;
+		return true;
+	}
+	
+	public int indexOf(Enrolment enrolment){         
+		for(int i=0;i<count;i++)
+		{
+			if(enrolment.subjectId.equals(list[i].subjectId))
+				return i;
+		}
+		return -1;
+	}
+	
+	public int size(){
+		return count;
+	}
+	
+	public String toString(){
+		String info="";
+		for(int i=0;i<count && list[i]!=null;i++)
+			info=info + list[i].toString()+"\n";
+		return info;
+	}
+	
+}
