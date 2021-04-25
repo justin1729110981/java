@@ -1,0 +1,58 @@
+package operate;
+
+import java.util.Scanner;
+
+public class hardoperation {
+	public static void main(String[] args){
+		Scanner scan=new Scanner(System.in);
+		String express=scan.next();
+		int pos1,pos2,pos3;
+		float result=0;
+		
+		pos1=express.indexOf("(");
+		String operation=express.substring(0, pos1);
+		pos2=express.indexOf(")");
+		if(operation.equals("doubleMe"))
+		{
+			String number=express.substring(pos1+1, pos2);
+			float Number=Float.parseFloat(number);
+			result=Number*2;
+			System.out.println("doubleMe"+"("+Number+")="+result);
+		}
+		else
+		{
+			pos3=express.indexOf(",");
+			String number1=express.substring(pos1+1, pos3);
+			String number2=express.substring(pos3+1, pos2);
+			float Number1=Float.parseFloat(number1);
+			float Number2=Float.parseFloat(number2);
+			if(operation.equals("add"))
+			{
+				result=Number1+Number2;
+				System.out.println("add"+"("+Number1+","+Number2+")="+result);
+			}
+			else if(operation.equals("sub"))
+			{
+				result=Number1-Number2;
+				System.out.println("sub"+"("+Number1+","+Number2+")="+result);
+			}
+			else if(operation.equals("max"))
+			{
+				if(Number1>Number2)
+					result=Number1;
+				else result=Number2;
+				System.out.println("max"+"("+Number1+","+Number2+")="+result);
+			}
+			else if(operation.equals("min"))
+			{
+				if(Number1>Number2)
+					result=Number2;
+				else result=Number1;
+				System.out.println("min"+"("+Number1+","+Number2+")="+result);
+			}
+		}
+		
+		
+	}
+	
+	}
