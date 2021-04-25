@@ -1,0 +1,36 @@
+package operate;
+
+import java.util.Scanner;
+
+public class operation {
+	public static void main(String[] args){
+		
+		Scanner scan=new Scanner(System.in);
+		
+		String express=scan.next();
+		String array[]=express.split("[\\+]|[\\-]|[\\*]|[\\/]");
+		
+		float data1=Float.parseFloat(array[0].trim());
+		float data2=Float.parseFloat(array[1].trim());
+		float result=0;
+		String info;
+		
+		result=data1+data2;
+		info=data1+"+"+data2+"="+String.valueOf(result);
+		System.out.println(info);
+			
+		result=data1-data2;
+		info=data1+"-"+data2+"="+String.valueOf(result);
+		System.out.println(info);
+			
+		result=data1*data2;
+		info=data1+"*"+data2+"="+String.valueOf(result);
+		System.out.println(info);
+				
+		result=data1/data2;
+		info=data1+"/"+data2+"="+String.valueOf(result);
+		System.out.println(info);
+				
+		}
+
+}
