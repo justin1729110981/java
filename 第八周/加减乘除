@@ -8,29 +8,58 @@ public class operation {
 		Scanner scan=new Scanner(System.in);
 		
 		String express=scan.next();
+			
+		String operation;
 		String array[]=express.split("[\\+]|[\\-]|[\\*]|[\\/]");
 		
 		float data1=Float.parseFloat(array[0].trim());
 		float data2=Float.parseFloat(array[1].trim());
 		float result=0;
+	
 		String info;
+		int location1=0,location2=0,location3=0,location4=0;
 		
-		result=data1+data2;
-		info=data1+"+"+data2+"="+String.valueOf(result);
-		System.out.println(info);
+		location1=express.indexOf("+");
+	
+		location2=express.indexOf("-");
+		
+		location3=express.indexOf("*");
+		
+		location4=express.indexOf("/");
+		
+		if(location1!=0&&location1!=-1)
+		{
+			result=data1+data2;
+			info=data1+"+"+data2+"="+String.valueOf(result);
+			System.out.println(info);
 			
-		result=data1-data2;
-		info=data1+"-"+data2+"="+String.valueOf(result);
-		System.out.println(info);
-			
-		result=data1*data2;
-		info=data1+"*"+data2+"="+String.valueOf(result);
-		System.out.println(info);
-				
-		result=data1/data2;
-		info=data1+"/"+data2+"="+String.valueOf(result);
-		System.out.println(info);
-				
 		}
+		
+		else if(location2!=0&&location2!=-1)
+		{
+			result=data1-data2;
+			info=data1+"-"+data2+"="+String.valueOf(result);
+			System.out.println(info);
+			
+		}
+		
+	
+		else if(location3!=0&&location3!=-1)
+		{
+			result=data1*data2;
+			info=data1+"*"+data2+"="+String.valueOf(result);
+			System.out.println(info);
+			
+		}
+		
+		else
+		{	
+			result=data1/data2;
+			info=data1+"/"+data2+"="+String.valueOf(result);
+			System.out.println(info);
+		
+		}
+	
+	}
 
 }
