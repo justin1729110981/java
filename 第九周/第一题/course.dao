@@ -1,0 +1,71 @@
+package homework1.dao;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import homework1.vo.CourseGrade;
+import homework1.vo.Student;
+import homework1.vo.courseResult;
+
+public class CourseDao {
+	public ArrayList<CourseGrade> read(){
+		ArrayList<CourseGrade> couList = new ArrayList<CourseGrade>();
+		String cou;
+		System.out.println("please Input Grade_Info(end by 'end')");
+		Scanner scan=new Scanner(System.in);
+		cou = scan.nextLine();
+		while(!cou.equals("end")) {
+			String[] cl=cou.split(",|，");
+			float grade=Float.parseFloat(cl[2]);
+			CourseGrade cg = new CourseGrade(cl[0],cl[1],grade);
+			couList.add(cg);
+			cou = scan.nextLine();
+		}
+		return couList;
+	}
+	public int Indexof(ArrayList<courseResult> list,String course)
+	{
+		int index = -1;
+		for(int i = 0;i<list.size();i++) {
+			courseResult cr = list.get(i);
+			if(cr.getCourse().equals(course))
+				return i;
+		}
+		
+		return index;
+	}
+	public ArrayList<courseResult> courseDao(ArrayList<CourseGrade> couList)
+	{
+		ArrayList<courseResult> result = new ArrayList<courseResult>();
+		for(int i = 0;i<couList.size();i++)
+		{
+			CourseGrade co = couList.get(i);
+			int m = Indexof(result,co.getCourse());
+			if(m==-1)
+			{
+				courseResult re = new courseResult(co.getCourse(),co.getGrade(),1);
+				result.add(re);
+			}else {
+				courseResult re = result.get(m);
+				re.setTotal(re.getTotal()+co.getGrade());
+				re.setI(re.getI()+1);
+				re.setAverGrade(re.getTotal()/re.getI());
+				result.set(m, re);
+			}
+		}
+		
+		
+		return result;
+	}
+	public String Display(ArrayList<courseResult> list)
+	{
+		String Info = "按课程统计：\n";
+		Info += "课程\t平均分\n";
+		for (courseResult Result : list) {
+			Info += Result.toString()+"\n";
+		}
+		return Info;
+		
+	}
+}
+
