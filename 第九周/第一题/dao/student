@@ -1,0 +1,60 @@
+package homework1.dao;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import homework1.vo.CourseGrade;
+import homework1.vo.Student;
+import homework1.vo.StudentResult;
+
+public class StudentDao {
+	public ArrayList<Student> read(){
+		ArrayList<Student> stuList = new ArrayList<Student>();
+		String stu;
+		System.out.println("please Input Stu_Info(end by 'end')");
+		Scanner scan=new Scanner(System.in);
+		stu = scan.nextLine();
+		while(!stu.equals("end")) {
+			String[] stl = stu.split(",|，");
+			Student st=new Student(stl[0],stl[1],stl[2]);
+			stuList.add(st);
+			stu = scan.nextLine();
+		}	
+		return stuList;
+	}
+	public ArrayList<StudentResult> studentDao(ArrayList<Student> stuList,ArrayList<CourseGrade> couList)
+	{
+		ArrayList<StudentResult> result = new ArrayList<StudentResult>();
+		Student stu;
+		CourseGrade cou;
+		for(int i = 0;i<stuList.size();i++)
+		{
+			float sum=0;
+			int num = 0;
+			stu = stuList.get(i);
+			for(int j = 0;j<couList.size();j++)
+			{
+				cou = couList.get(j);
+				if(cou.getId().equals(stu.getId()))
+				{
+					sum += cou.getGrade();
+					num++;
+				}
+			}
+			float aver= sum/num;
+			StudentResult re = new StudentResult(stu.getId(),stu.getName(),stu.getGender(),aver);
+			result.add(re);
+		}
+		return result;
+	}
+	public String Display(ArrayList<StudentResult> result) {
+		String Info ="";
+		Info += "按学生统计\n";
+		Info +="学号\t姓名\t性别\t平均分\n";
+		for (StudentResult studentResult : result) {
+			Info += studentResult.toString()+"\n";
+		}
+		return Info;
+		
+	}
+}
