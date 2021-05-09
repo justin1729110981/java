@@ -1,0 +1,28 @@
+package homework1;
+
+import java.util.ArrayList;
+
+import homework1.dao.CourseDao;
+import homework1.dao.StudentDao;
+import homework1.vo.CourseGrade;
+import homework1.vo.Student;
+import homework1.vo.StudentResult;
+import homework1.vo.courseResult;
+
+public class driver {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StudentDao a = new StudentDao();
+		ArrayList<Student> stuList = a.read();
+		CourseDao b = new CourseDao();
+		ArrayList<CourseGrade> couList = b.read();
+		ArrayList<StudentResult> SrList = a.studentDao(stuList, couList);
+		ArrayList<courseResult> CrList = b.courseDao(couList);
+		String Stu_Info = a.Display(SrList);
+		String Cou_Info = b.Display(CrList);
+		System.out.println(Stu_Info);
+		System.out.println(Cou_Info);
+	}
+
+}
