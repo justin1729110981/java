@@ -1,0 +1,77 @@
+package homework1.vo;
+
+public class courseResult {
+	private String course;
+	private float AverGrade;
+	private float total;
+	private int i;
+	public courseResult() {
+		super();
+	}
+	
+	
+
+	public courseResult(String course, float total, int i) {
+		super();
+		this.course = course;
+		AverGrade = total/i;
+		this.total = total;
+		this.i = i;
+	}
+
+
+
+	public String getCourse() {
+		return course;
+	}
+
+
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
+
+
+
+	public float getAverGrade() {
+		return AverGrade;
+	}
+
+
+
+	public void setAverGrade(float averGrade) {
+		AverGrade = averGrade;
+	}
+
+
+
+	public float getTotal() {
+		return total;
+	}
+
+
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
+
+
+	public int getI() {
+		return i;
+	}
+
+
+
+	public void setI(int i) {
+		this.i = i;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return course + "\t" + AverGrade;
+	}
+	
+}
