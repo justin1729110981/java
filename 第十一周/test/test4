@@ -1,0 +1,51 @@
+package test;
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String express ="";
+		Scanner scan=new Scanner(System.in);
+		express = scan.nextLine();
+		String regex= "((add)|(sub)|(double)|(min)|(max))\\(\\d{1,}(,\\d{1,})?\\)";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(express);
+		String result = express;
+		while(m.find()){
+			String basicExpress = m.group();
+			String s =Cal(basicExpress);
+			basicExpress = basicExpress.replaceAll("\\(", "\\\\(");
+			basicExpress = basicExpress.replaceAll("\\)", "\\\\)");
+			System.out.println("表达式为："+result);
+			result= result.replaceAll(basicExpress, s);
+			System.out.println("替换后："+result);
+			m = p.matcher(result);
+		}
+		System.out.println("运算结果为：");
+		System.out.println(express+"="+result);
+	}
+	public static String Cal(String s){
+		int result=0;
+		String title = s.substring(0,s.indexOf("("));
+		String num;
+		int n1;
+		String num2;
+		int n2;
+		switch(title){
+				case "add":num = s.substring(s.indexOf("(")+1,s.indexOf(","));num2 = s.substring(s.indexOf(",")+1,s.indexOf(")"));n1 = Integer.parseInt(num);n2 = Integer.parseInt(num2);result = n1+n2;break;
+				case "sub":num = s.substring(s.indexOf("(")+1,s.indexOf(","));num2 = s.substring(s.indexOf(",")+1,s.indexOf(")"));n1 = Integer.parseInt(num);n2 = Integer.parseInt(num2);result = n1+n2;break;
+				case "min":num = s.substring(s.indexOf("(")+1,s.indexOf(","));num2 = s.substring(s.indexOf(",")+1,s.indexOf(")"));n1 = Integer.parseInt(num);n2 = Integer.parseInt(num2);result = n1<n2?n1:n2;break;
+				case "double":num = s.substring(s.indexOf("(")+1,s.indexOf(")"));n1 = Integer.parseInt(num);result = n1*2;break;
+				case "max":num = s.substring(s.indexOf("(")+1,s.indexOf(","));num2 = s.substring(s.indexOf(",")+1,s.indexOf(")"));n1 = Integer.parseInt(num);n2 = Integer.parseInt(num2);result = n1>n2?n1:n2;break;
+				default:break;
+		}
+		
+		
+		return String.valueOf(result);
+	}
+
+}
